@@ -18,7 +18,7 @@
 PRODUCT_AAPT_CONFIG := normal tvdpi mdpi
 PRODUCT_AAPT_PREF_CONFIG := mdpi
 
-PRODUCT_LOCALES := en_US pt_PT es_ES
+PRODUCT_LOCALES := de_DE en_US
 PRODUCT_CHARACTERISTICS := tablet
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
@@ -27,7 +27,19 @@ else
 LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
 
-DEVICE_PACKAGE_OVERLAYS := device/rockchip/rk2918/overlay	
+DEVICE_PACKAGE_OVERLAYS := device/rockchip/rk2918/overlay
+
+#Ramdisk and boot
+PRODUCT_COPY_FILES += \
+	$(LOCAL_KERNEL):kernel.img \
+    	device/rockchip/rk2918/misc/init.rc:root/init.rc \
+	device/rockchip/rk2918/misc/init.rk29board.usb.rc:root/init.rk29board.usb.rc \
+	device/rockchip/rk2918/misc/init.target.rc:root/init.target.rc \
+   	device/rockchip/rk2918/misc/rk29xxnand_ko.ko.3.0.8+:root/rk29xxnand_ko.ko.3.0.8+ \
+   	device/rockchip/rk2918/misc/rk29xxnand_ko.ko.3.0.8+:recovery/root/rk29xxnand_ko.ko.3.0.8+ \
+	device/rockchip/rk2918/misc/ueventd.rk29board.rc:root/ueventd.rk29board.rc \
+        device/rockchip/rk2918/misc/ueventd.rk29board.rc:recovery/root/ueventd.rk29board.rc \
+	device/rockchip/rk2918/misc/misc.img:recovery/root/misc.img	
 	
 	
 # These are the hardware-specific configuration files
@@ -40,9 +52,6 @@ DEVICE_PACKAGE_OVERLAYS := device/rockchip/rk2918/overlay
 PRODUCT_COPY_FILES += \
 	$(call find-copy-subdir-files,*,device/rockchip/rk2918/rktools,rktools) 
 
-#usr
-#PRODUCT_COPY_FILES += \
-	$(call find-copy-subdir-files,*,device/rockchip/rk2918/prebuilt/usr,system)
 	
 # Wifi
 PRODUCT_PROPERTY_OVERRIDES := \
@@ -66,12 +75,12 @@ PRODUCT_PACKAGES += \
 	audio.primary.rk29board \
 	audio_policy.default \
 	tinyplay \
-    tinycap \
-    tinymix \
+        tinycap \
+        tinymix \
 	audio.a2dp.default \
-    audio.usb.default \
-    libtinyalsa \
-    libaudioutils
+        audio.usb.default \
+        libtinyalsa \
+        libaudioutils
 	
 	
 
@@ -80,15 +89,15 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.sf.lcd_density=160 \
 	ro.opengles.version=131072 \
 	hwui.render_dirty_regions=false \
-    rild.libpath=/system/lib/libril-rk29-dataonly.so \
-    ro.kernel.android.checkjni=1 \
-    persist.sys.ui.hw=true \
-    opengl.vivante.texture=1 \
+        rild.libpath=/system/lib/libril-rk29-dataonly.so \
+        ro.kernel.android.checkjni=1 \
+        persist.sys.ui.hw=true \
+        opengl.vivante.texture=1 \
 	ro.rk.sdcard_volume=InteralStorage \
 	ro.rk.external_volume=SDCard \
 	ro.rk.usb_host_volume=USBDisk \
 	ro.sf.fakerotation=true \
-    sys.hwc.compose_policy=6 \
+        sys.hwc.compose_policy=6 \
 	ro.vold.switchablepair=/mnt/sdcard,/mnt/external_sd \
 	accelerometer.invert_x=1 \
 	qemu.sf.lcd_density=120 \
@@ -107,8 +116,11 @@ PRODUCT_COPY_FILES += $(foreach module,\
 
 # copy the builder 
 PRODUCT_COPY_FILES += \
-	device/rockchip/rk2918/custom_boot.sh:custom_boot.sh
+	device/rockchip/rk2918/misc/custom_boot.sh:custom_boot.sh
 
 #Fix for dalvik-cache
 PRODUCT_PROPERTY_OVERRIDES += \
 	dalvik.vm.dexopt-data-only=1
+
+#heap
+include frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk

@@ -15,7 +15,7 @@
 import os
 import re
 
-import pascal2_common as common
+import rk2918_common as common
 
 class EdifyGenerator(object):
   """Class to generate scripts in the 'edify' recovery script language

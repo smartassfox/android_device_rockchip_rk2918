@@ -69,8 +69,8 @@ import tempfile
 import time
 import zipfile
 
-import pascal2_common as common
-import pascal2_edify_generator as edify_generator
+import rk2918_common as common
+import rk2918_edify_generator as edify_generator
 
 OPTIONS = common.OPTIONS
 OPTIONS.package_key = "build/target/product/security/testkey"

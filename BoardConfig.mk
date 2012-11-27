@@ -71,7 +71,7 @@ TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := ./device/rockchip/rk2918/releasetoo
 TARGET_CUSTOM_RELEASETOOL := ./device/rockchip/rk2918/releasetools/squisher
 
 #Graphics
-BOARD_EGL_CFG := device/rockchip/rk2918/egl.cfg
+BOARD_EGL_CFG := device/rockchip/rk2918/misc/egl.cfg
 BOARD_NO_RGBX_8888 := true
 USE_OPENGL_RENDERER := true
 TARGET_USES_GL_VENDOR_EXTENSIONS := true
@@ -106,8 +106,8 @@ TARGET_SPECIFIC_HEADER_PATH := device/rockchip/rk2918/include
 ENABLE_WEBGL := true
 
 #recovery
-TARGET_RECOVERY_INITRC := device/rockchip/rk2918/recovery_init.rc
-BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/rockchip/rk2918/recovery_keys.c
+TARGET_RECOVERY_INITRC := device/rockchip/rk2918/misc/recovery_init.rc
+BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/rockchip/rk2918/misc/recovery_keys.c
 BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun0/file"
 BOARD_NO_RGBX_8888 := true
 BOARD_UMS_2ND_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun1/file"
