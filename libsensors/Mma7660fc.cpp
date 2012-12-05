@@ -235,8 +235,8 @@ void Mma7660fc::processEvent(int code, int value)
 	/*		
 		KERNEL 	LIB 	ANDROID
 		X		X		X
-		Y		-Z		Y
-		Z		Y		Z
+		-Z		Y		Y
+		Y		Z		Z
 	*/
     switch (code) {
         case EVENT_TYPE_ACCEL_X:
@@ -244,12 +244,12 @@ void Mma7660fc::processEvent(int code, int value)
             mPendingEvents[Accelerometer].acceleration.x = (value * CONVERT_A_X);
             //ALOGD("Mma7660fc: mPendingEvents[Accelerometer].acceleration.x = %f",mPendingEvents[Accelerometer].acceleration.x);
             break;
-        case EVENT_TYPE_ACCEL_Z:
+        case EVENT_TYPE_ACCEL_Y:
             mPendingMask |= 1<<Accelerometer;
             mPendingEvents[Accelerometer].acceleration.y = (value * CONVERT_A_Y);
             //ALOGD("Mma7660fc: mPendingEvents[Accelerometer].acceleration.y = %f",mPendingEvents[Accelerometer].acceleration.y);
             break;
-        case EVENT_TYPE_ACCEL_Y:
+        case EVENT_TYPE_ACCEL_Z:
             mPendingMask |= 1<<Accelerometer;
             mPendingEvents[Accelerometer].acceleration.z = (value * CONVERT_A_Z);
             //ALOGD("Mma7660fc: mPendingEvents[Accelerometer].acceleration.z = %f",mPendingEvents[Accelerometer].acceleration.z);

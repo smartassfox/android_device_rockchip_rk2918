@@ -57,12 +57,12 @@ int init_nusensors(hw_module_t const* module, hw_device_t** device);
 
 /*****************************************************************************/
 
-#define MMA_DEVICE_NAME     "/dev/mma7660_daemon"
+#define MMA_DEVICE_NAME     "/dev/mma8452_daemon"
 #define MMA_DATA_NAME      	"gsensor"
 
 #define EVENT_TYPE_ACCEL_X          ABS_X
-#define EVENT_TYPE_ACCEL_Y          ABS_Z
-#define EVENT_TYPE_ACCEL_Z          ABS_Y
+#define EVENT_TYPE_ACCEL_Y          ABS_Y
+#define EVENT_TYPE_ACCEL_Z          ABS_Z
 #define EVENT_TYPE_ACCEL_STATUS     ABS_WHEEL
 
 // 720 LSG = 1G
@@ -76,7 +76,7 @@ int init_nusensors(hw_module_t const* module, hw_device_t** device);
 // conversion of acceleration data to SI units (m/s^2)
 #define CONVERT_A                   0.0098066
 #define CONVERT_A_X                 (CONVERT_A)
-#define CONVERT_A_Y                 (-CONVERT_A)
+#define CONVERT_A_Y                 (CONVERT_A)
 #define CONVERT_A_Z                 (CONVERT_A)
 
 #define SENSOR_STATE_MASK           (0x7FFF)

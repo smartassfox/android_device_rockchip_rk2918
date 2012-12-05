@@ -16,7 +16,7 @@
 #include <math.h>
 #include <hardware/sensors.h>
 
-#define MMA_DEVICE_NAME     "/dev/mma7660_daemon"
+#define MMA_DEVICE_NAME     "/dev/mma8452_daemon"
 #define MMA_DATA_NAME      	"gsensor"
 
 #define SENS_COUNT			1
